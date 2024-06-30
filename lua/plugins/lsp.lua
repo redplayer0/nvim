@@ -100,7 +100,9 @@ return {
       vim.list_extend(ensure_installed, servers_to_install)
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      lspconfig.jdtls.setup {}
+      lspconfig.jdtls.setup {
+        capabilities = capabilities,
+      }
 
       for name, config in pairs(servers) do
         if config == true then

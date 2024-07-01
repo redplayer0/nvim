@@ -1,11 +1,10 @@
 local actions = require 'telescope.actions'
 local layout_actions = require 'telescope.actions.layout'
-local s = asdf
 
 require('telescope').setup {
   pickers = {
     lsp_references = {
-      line_width = 60,
+      -- line_width = 80,
       layout_strategy = 'vertical',
     },
     diagnostics = {
@@ -52,7 +51,6 @@ require('telescope').setup {
 local builtin = require 'telescope.builtin'
 
 vim.keymap.set('n', '<leader>o', builtin.find_files, { desc = 'Find files' })
-vim.keymap.set('n', '<leader>ft', builtin.git_files, { desc = 'Find git files' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find help' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Find keymaps' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live grep' })
@@ -67,6 +65,12 @@ vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Definitions' })
 vim.keymap.set('n', '<leader>fv', function()
   builtin.git_files { cwd = vim.fn.stdpath 'config' }
 end, { desc = 'Nvim config files' })
+
+vim.keymap.set('n', '<leader>gls', builtin.git_files, { desc = 'Git list files' })
+vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Git status' })
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = 'Git commits' })
+vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'Git branches' })
+vim.keymap.set('n', '<leader>gh', builtin.git_stash, { desc = 'Git stash' })
 
 vim.api.nvim_create_autocmd('User', {
   group = vim.api.nvim_create_augroup('telescope', {}),

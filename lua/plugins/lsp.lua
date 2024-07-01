@@ -18,7 +18,45 @@ return {
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Autoformatting
-      'stevearc/conform.nvim',
+      -- 'stevearc/conform.nvim',
+      {
+        'stevearc/conform.nvim',
+        -- lazy = false,
+        event = { 'BufWritePre' },
+        cmd = { 'ConformInfo' },
+        keys = {
+          {
+            '<leader>fm',
+            function()
+              require('conform').format { async = true, lsp_fallback = true }
+            end,
+            mode = '',
+            desc = '[F]ormat buffer',
+          },
+        },
+        opts = {
+          notify_on_error = false,
+          format_on_save = function(bufnr)
+            -- Disable "format_on_save lsp_fallback" for languages that don't
+            -- have a well standardized coding style. You can add additional
+            -- languages here or re-enable it for the disabled ones.
+            local disable_filetypes = { c = true, cpp = true, typescript = true, javascript = true, java = true }
+            return {
+              timeout_ms = 500,
+              lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+            }
+          end,
+          formatters_by_ft = {
+            lua = { 'stylua' },
+            -- Conform can also run multiple formatters sequentially
+            python = { 'isort', 'black' },
+            --
+            -- You can use a sub-list to tell conform to run *until* a formatter
+            -- is found.
+            -- javascript = { { "prettierd", "prettier" } },
+          },
+        },
+      },
 
       -- Schema information
       'b0o/SchemaStore.nvim',
@@ -167,23 +205,13 @@ return {
       }
       vim.diagnostic.config(diagnostics)
 
-      -- Autoformatting Setup
-      require('conform').setup {
-        formatters_by_ft = {
-          lua = { 'stylua' },
-          python = { 'isort', 'black' },
-        },
-      }
-
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        callback = function(args)
-          require('conform').format {
-            bufnr = args.buf,
-            lsp_fallback = true,
-            quiet = true,
-          }
-        end,
-      })
+      -- -- Autoformatting Setup
+      -- require('conform').setup {
+      --   formatters_by_ft = {
+      --     lua = { 'stylua' },
+      --     python = { 'isort', 'black' },
+      --   },
+      -- }
     end,
   },
 }

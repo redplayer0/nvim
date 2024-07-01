@@ -60,6 +60,7 @@ return {
 
       -- Schema information
       'b0o/SchemaStore.nvim',
+      -- java specific
       'nvim-java/nvim-java',
     },
     config = function()

@@ -31,7 +31,7 @@ return {
               require('conform').format { async = true, lsp_fallback = true }
             end,
             mode = '',
-            desc = '[F]ormat buffer',
+            desc = 'Format buffer',
           },
         },
         opts = {
@@ -40,7 +40,15 @@ return {
             -- Disable "format_on_save lsp_fallback" for languages that don't
             -- have a well standardized coding style. You can add additional
             -- languages here or re-enable it for the disabled ones.
-            local disable_filetypes = { c = true, cpp = true, typescript = true, javascript = true, java = true }
+            local disable_filetypes = {
+              c = true,
+              cpp = true,
+              typescript = true,
+              javascript = true,
+              java = true,
+              html = true,
+              css = true,
+            }
             return {
               timeout_ms = 500,
               lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],

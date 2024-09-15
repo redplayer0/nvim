@@ -15,6 +15,8 @@ opt.smartcase = true
 opt.ignorecase = true
 
 ----- Personal Preferences -----
+opt.scrolloff = 8
+
 opt.number = true
 opt.relativenumber = true
 

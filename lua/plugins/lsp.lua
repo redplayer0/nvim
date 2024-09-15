@@ -58,6 +58,7 @@ return {
             lua = { 'stylua' },
             -- Conform can also run multiple formatters sequentially
             python = { 'isort', 'black' },
+            toml = { 'taplo' },
             --
             -- You can use a sub-list to tell conform to run *until* a formatter
             -- is found.
@@ -95,6 +96,20 @@ return {
         lua_ls = {
           server_capabilities = {
             semanticTokensProvider = vim.NIL,
+          },
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { 'love' },
+              },
+              workspace = {
+                checkThirdParty = false,
+                telemetry = { enable = false },
+                library = {
+                  '${3rd}/love2d/library',
+                },
+              },
+            },
           },
         },
 
@@ -142,6 +157,7 @@ return {
         'black',
         'stylua',
         'lua_ls',
+        'clangd',
       }
 
       vim.list_extend(ensure_installed, servers_to_install)

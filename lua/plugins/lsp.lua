@@ -93,6 +93,10 @@ return {
         bashls = true,
         pylsp = true,
 
+        elixirls = {
+          cmd = { '/home/red/.local/share/nvim/mason/bin/elixir-ls' },
+        },
+
         lua_ls = {
           server_capabilities = {
             semanticTokensProvider = vim.NIL,
@@ -114,11 +118,11 @@ return {
         },
 
         -- Probably want to disable formatting for this lang server
-        tsserver = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
+        -- tsserver = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        -- },
 
         jsonls = {
           settings = {
@@ -153,6 +157,7 @@ return {
 
       require('mason').setup()
       local ensure_installed = {
+        'elixirls',
         'isort',
         'black',
         'stylua',

@@ -93,6 +93,10 @@ return {
         bashls = true,
         pylsp = true,
 
+        lexical = {
+          cmd = { '/home/red/.local/share/nvim/mason/bin/lexical' },
+        },
+
         elixirls = {
           cmd = { '/home/red/.local/share/nvim/mason/bin/elixir-ls' },
         },

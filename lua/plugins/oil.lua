@@ -7,7 +7,9 @@ return {
         columns = { 'icon' },
         keymaps = {
           ['<C-h>'] = false,
+          ['<C-c>'] = 'actions.open_cwd',
           ['<M-h>'] = 'actions.select_split',
+          ['_'] = 'actions.close',
         },
         view_options = {
           show_hidden = true,

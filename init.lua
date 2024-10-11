@@ -16,6 +16,7 @@ opt.ignorecase = true
 
 ----- Personal Preferences -----
 opt.scrolloff = 8
+opt.virtualedit = 'onemore'
 
 opt.number = true
 opt.relativenumber = true
